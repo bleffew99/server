@@ -60,11 +60,15 @@ a {
 	* {
 		cursor: pointer;
 	}
-}
 
-a.external {
-	margin: 0 3px;
-	text-decoration: underline;
+	&.external {
+		margin: 0 3px;
+		text-decoration: underline;
+	}
+
+	&.highlighted {
+		color: var(--color-primary);
+	}
 }
 
 input {
