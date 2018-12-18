@@ -152,7 +152,7 @@ pipeline:
       matrix:
         TESTS: carddavtester-old-endpoint
   sqlite-php7.0-samba-native:
-      image: nextcloudci/samba-native-php7.0:samba-native-php7.0-3
+      image: nextcloudci/samba-native-php7.1:1
       commands:
         - smbd -D -FS &
         - ./autotest-external.sh sqlite smb-linux
@@ -163,9 +163,9 @@ pipeline:
         - sh -c "if [ '$DRONE_BUILD_EVENT' != 'pull_request' ]; then bash codecov.sh -B $DRONE_BRANCH -C $DRONE_COMMIT -t 117641e2-a9e8-4b7b-984b-ae872d9b05f5 -f tests/autotest-external-clover-sqlite-smb-linux.xml; fi"
       when:
         matrix:
-          TESTS: sqlite-php7.0-samba-native
+          TESTS: sqlite-php7.1-samba-native
   sqlite-php7.0-samba-non-native:
-      image: nextcloudci/samba-non-native-php7.0:samba-non-native-php7.0-4
+      image: nextcloudci/samba-non-native-php7.1:1
       commands:
         - smbd -D -FS &
         - ./autotest-external.sh sqlite smb-linux
@@ -176,9 +176,9 @@ pipeline:
         - sh -c "if [ '$DRONE_BUILD_EVENT' != 'pull_request' ]; then bash codecov.sh -B $DRONE_BRANCH -C $DRONE_COMMIT -t 117641e2-a9e8-4b7b-984b-ae872d9b05f5 -f tests/autotest-external-clover-sqlite-smb-linux.xml; fi"
       when:
         matrix:
-          TESTS: sqlite-php7.0-samba-non-native
+          TESTS: sqlite-php7.1-samba-non-native
   sqlite-php7.0-webdav-apache:
-    image: nextcloudci/webdav-apache-php7.0
+    image: nextcloudci/webdav-apache-php7.1:1
     commands:
       - apache2
       - ./autotest-external.sh sqlite webdav-apachedrone
@@ -189,7 +189,7 @@ pipeline:
       - sh -c "if [ '$DRONE_BUILD_EVENT' != 'pull_request' ]; then bash codecov.sh -B $DRONE_BRANCH -C $DRONE_COMMIT -t 117641e2-a9e8-4b7b-984b-ae872d9b05f5 -f tests/autotest-external-clover-sqlite-webdav-apachedrone.xml; fi"
     when:
       matrix:
-        TESTS: sqlite-php7.0-webdav-apache
+        TESTS: sqlite-php7.1-webdav-apache
   nodb-php7.1:
     image: nextcloudci/php7.1:php7.1-16
     commands:
@@ -561,7 +561,7 @@ pipeline:
         matrix:
           TESTS: integration-ldap-features
   integration-ldap-openldap-features:
-      image: nextcloudci/integration-php7.0:integration-php7.0-6
+      image: nextcloudci/integration-php7.1:1
       commands:
         - ./occ maintenance:install --admin-pass=admin --data-dir=/dev/shm/nc_int
         - ./occ app:enable user_ldap
@@ -571,7 +571,7 @@ pipeline:
         matrix:
           TESTS: integration-ldap-openldap-features
   integration-ldap-openldap-uid-features:
-        image: nextcloudci/integration-php7.0:integration-php7.0-6
+        image: nextcloudci/integration-php7.1:1
         commands:
           - ./occ maintenance:install --admin-pass=admin --data-dir=/dev/shm/nc_int
           - ./occ app:enable user_ldap
@@ -581,7 +581,7 @@ pipeline:
           matrix:
             TESTS: integration-ldap-openldap-uid-features
   integration-ldap-openldap-numerical-id-features:
-    image: nextcloudci/integration-php7.0:integration-php7.0-6
+    image: nextcloudci/integration-php7.1:1
     commands:
     - ./occ maintenance:install --admin-pass=admin --data-dir=/dev/shm/nc_int
     - ./occ app:enable user_ldap
@@ -729,7 +729,7 @@ pipeline:
         matrix:
           TESTS: object-store
   memcache-memcached:
-    image: nextcloudci/php7.0-memcached:php7.0-memcached-9
+    image: nextcloudci/php7.1-memcached:1
     commands:
       - phpenmod xdebug
       - service memcached restart
@@ -901,7 +901,6 @@ matrix:
     - TESTS: acceptance
       TESTS-ACCEPTANCE: apps
     - TESTS: jsunit
-    - TESTS: syntax-php7.0
     - TESTS: syntax-php7.1
     - TESTS: syntax-php7.2
     - TESTS: syntax-php7.3
@@ -922,12 +921,12 @@ matrix:
 #    - TESTS: object-store
 #      OBJECT_STORE: swift
 #      SWIFT-AUTH: v3
-    - TESTS: sqlite-php7.0-samba-native
-    - TESTS: sqlite-php7.0-samba-non-native
+    - TESTS: sqlite-php7.1-samba-native
+    - TESTS: sqlite-php7.1-samba-non-native
     - TEST: memcache-memcached
     - TEST: memcache-redis-cluster
       ENABLE_REDIS_CLUSTER: true
-    - TESTS: sqlite-php7.0-webdav-apache
+    - TESTS: sqlite-php7.1-webdav-apache
       ENABLE_REDIS: true
     - TESTS: ui-regression
 
