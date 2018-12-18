@@ -100,7 +100,7 @@ pipeline:
       matrix:
         TESTS: phan
   litmus-v1:
-    image: nextcloudci/litmus-php7.0:litmus-php7.0-6
+    image: nextcloudci/litmus-php7.1:1
     commands:
       - bash tests/travis/install.sh sqlite
       - bash apps/dav/tests/travis/litmus-v1/script.sh
@@ -108,7 +108,7 @@ pipeline:
       matrix:
         TESTS: litmus-v1
   litmus-v2:
-    image: nextcloudci/litmus-php7.0:litmus-php7.0-6
+    image: nextcloudci/litmus-php7.1:1
     commands:
       - bash tests/travis/install.sh sqlite
       - bash apps/dav/tests/travis/litmus-v2/script.sh
@@ -116,7 +116,7 @@ pipeline:
       matrix:
         TESTS: litmus-v2
   caldavtester-new-endpoint:
-    image: nextcloudci/litmus-php7.0:litmus-php7.0-6
+    image: nextcloudci/litmus-php7.1:1
     commands:
       - bash tests/travis/install.sh sqlite
       - bash apps/dav/tests/travis/caldav/install.sh
@@ -125,7 +125,7 @@ pipeline:
       matrix:
         TESTS: caldavtester-new-endpoint
   caldavtester-old-endpoint:
-    image: nextcloudci/litmus-php7.0:litmus-php7.0-6
+    image: nextcloudci/litmus-php7.1:1
     commands:
       - bash tests/travis/install.sh sqlite
       - bash apps/dav/tests/travis/caldav/install.sh
@@ -134,7 +134,7 @@ pipeline:
       matrix:
         TESTS: caldavtester-old-endpoint
   carddavtester-new-endpoint:
-    image: nextcloudci/litmus-php7.0:litmus-php7.0-6
+    image: nextcloudci/litmus-php7.1:1
     commands:
       - bash tests/travis/install.sh sqlite
       - bash apps/dav/tests/travis/carddav/install.sh
@@ -143,7 +143,7 @@ pipeline:
       matrix:
         TESTS: carddavtester-new-endpoint
   carddavtester-old-endpoint:
-    image: nextcloudci/litmus-php7.0:litmus-php7.0-6
+    image: nextcloudci/litmus-php7.1:1
     commands:
       - bash tests/travis/install.sh sqlite
       - bash apps/dav/tests/travis/carddav/install.sh
